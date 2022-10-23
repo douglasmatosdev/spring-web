@@ -1,0 +1,60 @@
+<div th:replace="shared/header"></div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Administrators</h1>
+    <p class="mb-4">All system administrators are listed here.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/administrators/new" class="btn btn-primary" style="margin-right: 20px;">New</a>
+            <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">List Administrators</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    <tr th:each="administrator : ${administrators}">
+                        <td th:text="${administrator.id}"></td>
+                        <td th:text="${administrator.name}"></td>
+                        <td th:text="${administrator.email}"></td>
+                        <td th:text="${administrator.password}"></td>
+                        <td><a class="btn btn-warning" th:href="@{'/administrators/'+${administrator.id}}">Edit</a></td>
+                        <td><a href="#"
+                               th:onclick="'if(confirm(\'Confirm ?\')) { window.location.href = \'' + @{/administrators/delete/{id}(id=${administrator.id})} + '\' } '"
+                               class="btn btn-danger">Delete</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+<div th:replace="shared/footer"></div>
